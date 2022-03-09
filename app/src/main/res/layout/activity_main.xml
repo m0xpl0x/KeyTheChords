@@ -6,15 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="379dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button">
+        app:tabGravity="fill"
+        app:tabInlineLabel="false"
+        app:tabMode="fixed"
+        app:tabTextAppearance="@style/TabStyle">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -30,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fill In" />
+
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -39,12 +44,89 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="440dp" />
 
+
+    <fragment
+        android:id="@+id/chordsListFragment"
+        android:name="de.app.keythechords.ui.Fragments.ChordsFragment"
+        android:layout_width="377dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="375dp"
+        android:layout_height="107dp"
+        android:layout_above="@+id/tabLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.527"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintVertical_bias="0.706">
+        <!--        layout above vlt weg-->
+
+
+    </androidx.viewpager.widget.ViewPager>
+
+    <!--<fragment
+        android:id="@+id/tranposeFragment"
+        android:name="de.app.keythechords.ui.Fragments.TransposeFragment"
+        android:layout_width="375dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvShowKey"
+        tools:visibility="gone" />
+
+    <fragment
+        android:id="@+id/KeyFragment"
+        android:name="de.app.keythechords.ui.Fragments.KeyFragment"
+        android:layout_width="375dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvShowKey"
+        tools:visibility="gone" />
+
+    <fragment
+        android:id="@+id/FillFragment"
+        android:name="de.app.keythechords.ui.Fragments.FillFragment"
+        android:layout_width="375dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvShowKey"
+        tools:visibility="gone" />-->
+
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvShowKey"
         android:layout_width="233dp"
         android:layout_height="38dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="180dp"
         android:autoText="false"
         android:background="#2B0062A2"
         android:editable="false"
@@ -55,49 +137,58 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:backgroundTint="#0062A2"
-        android:text="Transpose"
-        android:textSize="18sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button5"
-        app:layout_constraintEnd_toStartOf="@+id/button5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button6" />
+    <!--        <Button
+                android:id="@+id/buttonTranpose"
+                android:layout_width="150dp"
+                android:layout_height="75dp"
+                android:backgroundTint="#0062A2"
+                android:text="Transpose"
+                android:textSize="18sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/buttonPlus"
+                app:layout_constraintEnd_toStartOf="@+id/buttonPlus"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/buttonMinus" />
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="108dp"
-        android:backgroundTint="#0062A2"
-        android:backgroundTintMode="add"
-        android:text="-1"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+            <Button
+                android:id="@+id/buttonMinus"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="108dp"
+                android:backgroundTint="#0062A2"
+                android:backgroundTintMode="add"
+                android:text="-1"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/buttonTranpose"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="108dp"
-        android:backgroundTint="#0062A2"
-        android:backgroundTintMode="add"
-        android:text="+1"
-        android:textSize="16sp"
+            <Button
+                android:id="@+id/buttonPlus"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_marginTop="108dp"
+                android:backgroundTint="#0062A2"
+                android:backgroundTintMode="add"
+                android:text="+1"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/buttonTranpose"
+                app:layout_constraintTop_toTopOf="@+id/guideline2"/>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="364dp"
+        android:layout_height="382dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

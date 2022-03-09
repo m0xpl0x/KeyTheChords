@@ -5,9 +5,9 @@ class MusicWizard {
     var musicalNotesList = listOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
     var musicalChordModesList = listOf("major","minor","diminished")
 
-    var musicalKeyModesList = listOf("major","minor")
+//var musicalKeyModesList = listOf("major","minor")
 
-    //Major Chords
+//Major Chords
 
     var cMajorKeyList = ArrayList<Pair<String,String>>()
     var csMajorKeyList = ArrayList<Pair<String,String>>()
@@ -26,7 +26,7 @@ class MusicWizard {
         eMajorKeyList,fMajorKeyList,fsMajorKeyList,gMajorKeyList,
         gsMajorKeyList,aMajorKeyList,asMajorKeyList,bMajorKeyList);
 
-    //Minor Chords
+//Minor Chords
 
     var cMinorKeyList = ArrayList<Pair<String,String>>()
     var csMinorKeyList = ArrayList<Pair<String,String>>()
@@ -50,9 +50,7 @@ class MusicWizard {
 
     init {
 
-        //var MajorKeysList = Array<Array<Pair<String,String>>>(12,{Array<Pair<String,String>>(1,{i -> Pair("init","init")})})
-
-        for (i in 0 .. majorKeyList.size-1) {
+        for (i in 0 until majorKeyList.size-1) {
 
             majorKeyList[i].add(Pair(musicalNotesList[i%12],musicalChordModesList[0])) //I Major
             majorKeyList[i].add(Pair(musicalNotesList[(i+2)%12],musicalChordModesList[1])) // II Minor
@@ -63,7 +61,9 @@ class MusicWizard {
             majorKeyList[i].add(Pair(musicalNotesList[(i+11)%12],musicalChordModesList[2])) // VII Diminished
         }
 
-        for (i in 0 .. minorKeyList.size-1) {
+
+
+        for (i in 0 until minorKeyList.size-1) {
 
             minorKeyList[i].add(Pair(musicalNotesList[i%12],musicalChordModesList[1])) //I Minor
             minorKeyList[i].add(Pair(musicalNotesList[(i+2)%12],musicalChordModesList[2])) // II Diminished
@@ -74,6 +74,71 @@ class MusicWizard {
             minorKeyList[i].add(Pair(musicalNotesList[(i+10)%12],musicalChordModesList[0])) // bVII major
         }
 
+        var testChord0 = Pair("C","major")
+        var testChord1 = Pair("F#","diminished")
+        var testChord2 = Pair("G","major")
+        var testChords = arrayListOf(testChord0,testChord1,testChord2)
+
+        println(findKeyOfChord(testChords))
+
+
+        if (lookForChordInKey(cMajorKeyList,testChord0)) {
+            println("success");
+        }
+
+        if (!lookForChordInKey(csMajorKeyList,testChord0)) {
+            println("fail");
+        }
+
+    }
+
+    fun findKeyOfChord(chords : ArrayList<Pair<String,String>>): String {
+
+        chords.forEach {c ->
+            for (j in 0 until majorKeyList.size-1) {
+
+                //check in major chords
+
+                if (lookForChordInKey(majorKeyList[j],c)) {
+                    var flag : Int = 0
+                    for (i in 0 until chords.size -1) {
+                        if(!lookForChordInKey(majorKeyList[j], chords[i])) {
+                            flag = 1
+                        }
+                    }
+                    if (flag == 0) {
+                        return majorKeyList[j][0].toString()
+                    }
+                }
+
+                //check in minor chords
+
+                if (lookForChordInKey(minorKeyList[j],c)) {
+                    var flag : Int = 0
+                    for (i in 0 until chords.size -1) {
+                        if(!lookForChordInKey(minorKeyList[j], chords[i])) {
+                            flag = 1
+                        }
+                    }
+                    if (flag == 0) {
+                        return minorKeyList[j][0].toString()
+                    }
+                }
+            }
+        }
+
+        return "404"
+    }
+
+
+    fun lookForChordInKey(key : ArrayList<Pair<String,String>>, chord : Pair<String,String> ) : Boolean {
+
+        key.forEach {
+            if (it.first == chord.first && it.second == chord.second) {
+                return true
+            }
+        }
+        return false
     }
 
 }

@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">KeyTheChords</string>
+
+    <string-array name="keys">
+
+        <item> C </item>
+        <item> C# </item>
+        <item> D </item>
+        <item> D# </item>
+        <item> E </item>
+        <item> F </item>
+        <item> F# </item>
+        <item> G </item>
+        <item> G# </item>
+        <item> A </item>
+        <item> A# </item>
+        <item> B </item>
+
+    </string-array>
+
+
+    <string-array name="modes">
+
+        <item>major</item>
+        <item>minor</item>
+
+    </string-array>
+
+
 </resources>

@@ -5,7 +5,15 @@
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2385" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1425" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2504528985507246" />
+        <entry key="app/src/main/res/drawable/ic_minus1.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_chords.xml" value="0.32518115942028986" />
+        <entry key="app/src/main/res/layout/fragment_chords_list.xml" value="0.32518115942028986" />
+        <entry key="app/src/main/res/layout/fragment_fill.xml" value="0.32518115942028986" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.32518115942028986" />
+        <entry key="app/src/main/res/layout/fragment_key.xml" value="0.32518115942028986" />
+        <entry key="app/src/main/res/layout/fragment_transpose.xml" value="0.32518115942028986" />
+        <entry key="app/src/main/res/layout/list_items.xml" value="0.32518115942028986" />
       </map>
     </option>
   </component>
