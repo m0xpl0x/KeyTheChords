@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity(){
     private lateinit var tranposeButton: Button;
     var selectedKeys = Array<String>(7) {it -> "----"}
     var selectedModes = Array<String>(7) {it -> "----"}
+    val mw = MusicWizard()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -27,12 +28,31 @@ class MainActivity : AppCompatActivity(){
 
         setUpTabs()
 
-        val mw = MusicWizard()
-        println("succeded?")
+
+
         
         setUpSpinner()
 
         }
+
+    fun findKey(view : View) {
+
+        Log.d("malte",prepareChordData().toString())
+        //Log.d("malte",mw.findKeyOfChord(prepareChordData()))
+    }
+
+    private fun prepareChordData() : ArrayList<Pair<String,String>>{
+
+        var chords = ArrayList<Pair<String,String>>()
+        for (index in 0 until selectedKeys.size - 1){
+            if(selectedKeys[index] != "----" && selectedModes[index] != "------------------") {
+                chords.add(Pair(selectedKeys[index], selectedModes[index]))
+            }
+        }
+
+        return chords
+
+    }
 
     private fun setUpSpinner() {
 

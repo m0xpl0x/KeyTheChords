@@ -73,24 +73,69 @@ class MusicWizard {
             minorKeyList[i].add(Pair(musicalNotesList[(i+8)%12],musicalChordModesList[0])) // bVI Major
             minorKeyList[i].add(Pair(musicalNotesList[(i+10)%12],musicalChordModesList[0])) // bVII major
         }
-
-        var testChord0 = Pair("C","major")
-        var testChord1 = Pair("F#","diminished")
-        var testChord2 = Pair("G","major")
-        var testChords = arrayListOf(testChord0,testChord1,testChord2)
-
-        println(findKeyOfChord(testChords))
-
-
-        if (lookForChordInKey(cMajorKeyList,testChord0)) {
-            println("success");
-        }
-
-        if (!lookForChordInKey(csMajorKeyList,testChord0)) {
-            println("fail");
-        }
-
     }
+
+    fun fillInChords(chords : ArrayList<Pair<String,String>>) : ArrayList<Pair<String,String>> {
+        println("chords.size : " + chords.size)
+        if (chords.size < 7) {
+            var keyString = findKeyOfChord(chords);
+
+            println("keyString : " + keyString)
+
+            var keyLetter = keyString[1].toString()
+
+            println("keyletter : " + keyLetter)
+
+            if (keyString.contains("major")) {
+                majorKeyList.forEach { majorKey ->
+                    var currentKey = majorKey[0]
+                    if (currentKey.first == keyLetter)
+                    {
+                        majorKey.forEach { majorChord ->
+                            if (!chords.contains(majorChord)) {
+                                chords.add(majorChord)
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (keyString.contains("minor")) {
+                minorKeyList.forEach { minorKey ->
+                    var currentKey = minorKey[0]
+                    if (currentKey.first == keyLetter)
+                    {
+                        minorKey.forEach { minorChord ->
+                            if (!chords.contains(minorChord)) {
+                                chords.add(minorChord)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return chords
+    }
+
+    fun transposeKey(chords : ArrayList<Pair<String,String>>,step : Int) : ArrayList<Pair<String,String>> {
+
+        var transposedChords = ArrayList<Pair<String,String>>()
+
+        chords.forEach { chord ->
+            var oldkey = chord.first;
+            var oldMode = chord.second;
+            var position = musicalNotesList.indexOf(oldkey)
+            while (position + step < 0) {
+                position += 12;
+            }
+            var newKey = musicalNotesList[(position + step)%12]
+            transposedChords.add(Pair(newKey,oldMode))
+
+        }
+        return transposedChords
+    }
+
 
     fun findKeyOfChord(chords : ArrayList<Pair<String,String>>): String {
 
