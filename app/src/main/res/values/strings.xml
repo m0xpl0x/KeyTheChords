@@ -3,6 +3,7 @@
 
     <string-array name="keys">
 
+        <item> ---- </item>
         <item> C </item>
         <item> C# </item>
         <item> D </item>
@@ -21,6 +22,7 @@
 
     <string-array name="modes">
 
+        <item>------------------</item>
         <item>major</item>
         <item>minor</item>
 
