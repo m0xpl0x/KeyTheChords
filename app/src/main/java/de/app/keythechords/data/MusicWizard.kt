@@ -146,7 +146,7 @@ class MusicWizard {
 
                 if (lookForChordInKey(majorKeyList[j],c)) {
                     var flag : Int = 0
-                    for (i in 0 until chords.size -1) {
+                    for (i in 0 until chords.size) {
                         if(!lookForChordInKey(majorKeyList[j], chords[i])) {
                             flag = 1
                         }
@@ -160,7 +160,7 @@ class MusicWizard {
 
                 if (lookForChordInKey(minorKeyList[j],c)) {
                     var flag : Int = 0
-                    for (i in 0 until chords.size -1) {
+                    for (i in 0 until chords.size) {
                         if(!lookForChordInKey(minorKeyList[j], chords[i])) {
                             flag = 1
                         }
