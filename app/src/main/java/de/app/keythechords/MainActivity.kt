@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.core.view.get
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import de.app.keythechords.data.MusicWizard
@@ -19,6 +18,9 @@ class MainActivity : AppCompatActivity(){
     var selectedKeys = Array<String>(7) {it -> "----"}
     var selectedModes = Array<String>(7) {it -> "----"}
     val mw = MusicWizard()
+    lateinit var  keyText : TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -26,19 +28,28 @@ class MainActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         setUpTabs()
 
 
-
-        
         setUpSpinner()
 
         }
 
+    override fun onStart() {
+        super.onStart()
+
+
+    }
+
     fun findKey(view : View) {
 
-        Log.d("malte",prepareChordData().toString())
+        //Log.d("malte",prepareChordData().toString())
         //Log.d("malte",mw.findKeyOfChord(prepareChordData()))
+        val key = mw.findKeyOfChord(prepareChordData())
+        var keyText = findViewById<TextView>(R.id.tvShowKey);
+        keyText.setText("The Key is : " + key);
+
     }
 
     private fun prepareChordData() : ArrayList<Pair<String,String>>{
@@ -81,11 +92,6 @@ class MainActivity : AppCompatActivity(){
                     position: Int,
                     id: Long
                 ) {
-                    Toast.makeText( //remove this toast later
-                        this@MainActivity,
-                        "item: :  ${(position).toString()}",
-                        Toast.LENGTH_SHORT
-                    ).show();
                     selectedKeys[spinnerKeyList.indexOf(spinner)] = adapterview?.getItemAtPosition(position) as String
                     //Log.d("malte",getResources().getResourceEntryName(spinner.id).toString())
                     //Log.d("malte",spinnerKeyList.indexOf(spinner).toString())
