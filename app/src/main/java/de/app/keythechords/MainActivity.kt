@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity(){
     var selectedModes = Array<String>(7) {it -> "----"}
     val mw = MusicWizard()
     lateinit var  keyText : TextView
+    lateinit var key : String
+    lateinit var spinnerKeyList : ArrayList<Spinner>
+    lateinit var spinnerModeList  : ArrayList<Spinner>
+
 
 
 
@@ -36,38 +40,91 @@ class MainActivity : AppCompatActivity(){
 
         }
 
-    override fun onStart() {
-        super.onStart()
 
+
+
+
+    fun transpose(view : View) {
+        var newChords = ArrayList<Pair<String,String>>()
+        when (view.id) {
+            R.id.btnTranposePlus -> {
+                newChords = mw.transposeKey(prepareChordData(),1)
+            }
+            R.id.btnTranposeMinus -> {
+                newChords = mw.transposeKey(prepareChordData(),-1)
+            }
+        }
+       /* Log.d("malte",newChords.size.toString())
+        Log.d("malte",newChords.toString())*/
+
+        clearSelectedKeys()
+
+        for (i in 0 until newChords.size) {
+            selectedKeys[i] = newChords[i].first
+
+        }
+        setChordData(selectedKeys,selectedModes)
+
+        findKey(view)
 
     }
 
     fun findKey(view : View) {
-
-        //Log.d("malte",prepareChordData().toString())
-        //Log.d("malte",mw.findKeyOfChord(prepareChordData()))
         val key = mw.findKeyOfChord(prepareChordData())
         var keyText = findViewById<TextView>(R.id.tvShowKey);
-        keyText.setText("The Key is : " + key);
+        if (key.first == "Nothing Found") {
+            keyText.setText("No Matching Key found");
+        }
+        else
+            keyText.setText("The Key is : " + key.first + " " + key.second);
+    }
 
+    fun fill(view : View) {
+        var newChords = ArrayList<Pair<String,String>>()
+        newChords = mw.fillInChords(prepareChordData())
+        Log.d("malte",newChords.toString())
+        clearSelectedKeys()
+        for (i in 0 until newChords.size) {
+            selectedKeys[i] = newChords[i].first
+            selectedModes[i] = newChords[i].second
+
+        }
+        setChordData(selectedKeys,selectedModes)
+        findKey(view)
+    }
+
+    private fun clearSelectedKeys() {
+        for(i in 0 until selectedKeys.size) {
+            selectedKeys[i] = "----"
+        }
+    }
+
+    private fun setChordData(keys : Array<String>,modes : Array<String>) {
+        for ( i in 0 until spinnerKeyList.size) {
+            val position = mw.musicalNotesList.indexOf(keys[i]) + 1
+            spinnerKeyList[i].setSelection(position)
+        }
+
+        for ( i in 0 until spinnerModeList.size) {
+            val position = mw.musicalChordModesList.indexOf(modes[i]) + 1
+            spinnerModeList[i].setSelection(position)
+        }
     }
 
     private fun prepareChordData() : ArrayList<Pair<String,String>>{
 
         var chords = ArrayList<Pair<String,String>>()
-        for (index in 0 until selectedKeys.size - 1){
+        for (index in 0 until selectedKeys.size ){
             if(selectedKeys[index] != "----" && selectedModes[index] != "------------------") {
                 chords.add(Pair(selectedKeys[index], selectedModes[index]))
             }
         }
-
         return chords
-
     }
 
     private fun setUpSpinner() {
 
-        val spinnerKeyList = ArrayList<Spinner>()
+        spinnerKeyList = ArrayList<Spinner>()
         spinnerKeyList.add(findViewById(R.id.spKey1))
         spinnerKeyList.add(findViewById(R.id.spKey2))
         spinnerKeyList.add(findViewById(R.id.spKey3))
@@ -79,7 +136,7 @@ class MainActivity : AppCompatActivity(){
         spinnerKeyList.forEach {spinner ->
             ArrayAdapter.createFromResource(
                 this,
-                R.array.keys,
+                R.array.Spinnerkeys,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -105,7 +162,7 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
-        val spinnerModeList = ArrayList<Spinner>()
+        spinnerModeList = ArrayList<Spinner>()
         spinnerModeList.add(findViewById(R.id.spMode1))
         spinnerModeList.add(findViewById(R.id.spMode2))
         spinnerModeList.add(findViewById(R.id.spMode3))
@@ -161,6 +218,7 @@ class MainActivity : AppCompatActivity(){
         tabs.getTabAt(0)!!.setIcon(R.drawable.ic_transpose)
         tabs.getTabAt(1)!!.setIcon(R.drawable.ic_key)
         tabs.getTabAt(2)!!.setIcon(R.drawable.ic_fill)
+        tabs.selectTab( tabs.getTabAt(1))
     }
 
 

@@ -1,5 +1,7 @@
 package de.app.keythechords.data
 
+import android.util.Log
+
 class MusicWizard {
 
     var musicalNotesList = listOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
@@ -50,7 +52,7 @@ class MusicWizard {
 
     init {
 
-        for (i in 0 until majorKeyList.size-1) {
+        for (i in 0 until majorKeyList.size) {//war mal bei beidem ...size -1
 
             majorKeyList[i].add(Pair(musicalNotesList[i%12],musicalChordModesList[0])) //I Major
             majorKeyList[i].add(Pair(musicalNotesList[(i+2)%12],musicalChordModesList[1])) // II Minor
@@ -63,7 +65,7 @@ class MusicWizard {
 
 
 
-        for (i in 0 until minorKeyList.size-1) {
+        for (i in 0 until minorKeyList.size) {
 
             minorKeyList[i].add(Pair(musicalNotesList[i%12],musicalChordModesList[1])) //I Minor
             minorKeyList[i].add(Pair(musicalNotesList[(i+2)%12],musicalChordModesList[2])) // II Diminished
@@ -76,9 +78,9 @@ class MusicWizard {
     }
 
     fun fillInChords(chords : ArrayList<Pair<String,String>>) : ArrayList<Pair<String,String>> {
-        println("chords.size : " + chords.size)
+        Log.d("malte","chords.size : " + chords.size)
         if (chords.size < 7) {
-            var keyString = findKeyOfChord(chords);
+            var keyString = findKeyOfChord(chords).toString();
 
             println("keyString : " + keyString)
 
@@ -137,10 +139,10 @@ class MusicWizard {
     }
 
 
-    fun findKeyOfChord(chords : ArrayList<Pair<String,String>>): String {
+    fun findKeyOfChord(chords : ArrayList<Pair<String,String>>): Pair<String,String> {
 
         chords.forEach {c ->
-            for (j in 0 until majorKeyList.size-1) {
+            for (j in 0 until majorKeyList.size) {
 
                 //check in major chords
 
@@ -152,7 +154,7 @@ class MusicWizard {
                         }
                     }
                     if (flag == 0) {
-                        return majorKeyList[j][0].toString()
+                        return majorKeyList[j][0]
                     }
                 }
 
@@ -166,13 +168,13 @@ class MusicWizard {
                         }
                     }
                     if (flag == 0) {
-                        return minorKeyList[j][0].toString()
+                        return minorKeyList[j][0]
                     }
                 }
             }
         }
 
-        return "404"
+        return Pair("Nothing Found","")
     }
 
 

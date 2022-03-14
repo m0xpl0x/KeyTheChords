@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">KeyTheChords</string>
 
-    <string-array name="keys">
+    <string-array name="Spinnerkeys">
 
         <item> ---- </item>
         <item> C </item>
