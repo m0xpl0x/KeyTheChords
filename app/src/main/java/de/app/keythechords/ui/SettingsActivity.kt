@@ -1,4 +1,4 @@
-package de.app.keythechords.ui.Fragments
+package de.app.keythechords.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

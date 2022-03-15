@@ -1,36 +1,45 @@
-package de.app.keythechords
+package de.app.keythechords.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import de.app.keythechords.R
 import de.app.keythechords.data.MusicWizard
 import de.app.keythechords.ui.Fragments.Adapters.ViewPagerAdapter
 import de.app.keythechords.ui.Fragments.FillFragment
 import de.app.keythechords.ui.Fragments.KeyFragment
-import de.app.keythechords.ui.Fragments.SettingsActivity
 import de.app.keythechords.ui.Fragments.TransposeFragment
+import de.app.keythechords.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity(){
-    var selectedKeys = Array(7) { "----"}
-    var selectedModes = Array(7) {"----"}
-    private val mw = MusicWizard()
-    lateinit var spinnerKeyList : ArrayList<Spinner>
-    lateinit var spinnerModeList  : ArrayList<Spinner>
 
+
+    var spinnerKeyList = ArrayList<Spinner>()
+    var spinnerModeList = ArrayList<Spinner>()
+    val viewModel : MainViewModel by viewModels()
+
+    /*
+
+    TODO("MVVM Struktur")
+    TODO("dependency injection - Koin")
+    TODO("darkmode")
+
+    */
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        val string = getString(R.string.showKeyText)
 
         setUpTabs()
 
@@ -39,86 +48,27 @@ class MainActivity : AppCompatActivity(){
 
         }
     fun openSettingsActivity(view : View) {
-        val intent =  Intent(this,SettingsActivity::class.java)
+        val intent =  Intent(this, SettingsActivity::class.java)
         startActivity(intent)
     }
 
 
     fun transpose(view : View) {
-        var newChords = ArrayList<Pair<String,String>>()
-        when (view.id) {
-            R.id.btnTranposePlus -> {
-                newChords = mw.transposeKey(prepareChordData(),1)
-            }
-            R.id.btnTranposeMinus -> {
-                newChords = mw.transposeKey(prepareChordData(),-1)
-            }
-        }
-       /* Log.d("malte",newChords.size.toString())
-        Log.d("malte",newChords.toString())*/
-
-        clearSelectedKeys()
-
-        for (i in 0 until newChords.size) {
-            selectedKeys[i] = newChords[i].first
-
-        }
-        setChordData(selectedKeys,selectedModes)
-
-        findKey(view)
 
     }
 
+
     fun findKey(view : View) {
-        val key = mw.findKeyOfChord(prepareChordData())
-        val keyText = findViewById<TextView>(R.id.tvShowKey)
-        if (key.first == "Nothing Found") {
-            keyText.setText(R.string.noKeyfound)
-        }
-        else
-            keyText.text = getString(R.string.showKeyText) + key.first + " " + key.second
+        viewModel.findKey(findViewById<TextView>(R.id.tvShowKey))
     }
 
     fun fill(view : View) {
-        val newChords = mw.fillInChords(prepareChordData())
-        clearSelectedKeys()
-        for (i in 0 until newChords.size) {
-            selectedKeys[i] = newChords[i].first
-            selectedModes[i] = newChords[i].second
 
-        }
-        setChordData(selectedKeys,selectedModes)
-        findKey(view)
     }
 
-    private fun clearSelectedKeys() {
-        for(i in selectedKeys.indices) {
-            selectedKeys[i] = "----"
-        }
-    }
 
-    private fun setChordData(keys : Array<String>,modes : Array<String>) {
-        for ( i in 0 until spinnerKeyList.size) {
-            val position = mw.musicalNotesList.indexOf(keys[i]) + 1
-            spinnerKeyList[i].setSelection(position)
-        }
 
-        for ( i in 0 until spinnerModeList.size) {
-            val position = mw.musicalChordModesList.indexOf(modes[i]) + 1
-            spinnerModeList[i].setSelection(position)
-        }
-    }
 
-    private fun prepareChordData() : ArrayList<Pair<String,String>>{
-
-        val chords = ArrayList<Pair<String,String>>()
-        for (index in selectedKeys.indices){
-            if(selectedKeys[index] != getString(R.string.emptyKey) && selectedModes[index] != getString(R.string.emptyMode)) {
-                chords.add(Pair(selectedKeys[index], selectedModes[index]))
-            }
-        }
-        return chords
-    }
 
     private fun setUpSpinner() {
 
@@ -147,11 +97,7 @@ class MainActivity : AppCompatActivity(){
                     position: Int,
                     id: Long
                 ) {
-                    selectedKeys[spinnerKeyList.indexOf(spinner)] = adapterview?.getItemAtPosition(position) as String
-                    //Log.d("malte",getResources().getResourceEntryName(spinner.id).toString())
-                    //Log.d("malte",spinnerKeyList.indexOf(spinner).toString())
-                    Log.d("malte",selectedKeys[spinnerKeyList.indexOf(spinner)] + " " + spinnerKeyList.indexOf(spinner) )
-
+                    viewModel.selectedKeys[spinnerKeyList.indexOf(spinner)] = adapterview?.getItemAtPosition(position) as String
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -185,8 +131,7 @@ class MainActivity : AppCompatActivity(){
                     position: Int,
                     id: Long
                 ) {
-                    selectedModes[spinnerModeList.indexOf(spinner)] = adapterview?.getItemAtPosition(position) as String
-                    Log.d("malte",selectedModes[spinnerModeList.indexOf(spinner)] + " " + spinnerModeList.indexOf(spinner) )
+                    viewModel.selectedModes[spinnerModeList.indexOf(spinner)] = adapterview?.getItemAtPosition(position) as String
 
                 }
 
