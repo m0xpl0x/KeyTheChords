@@ -13,7 +13,7 @@
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Find Key"
+        android:text="@string/findKeyButton"
         android:onClick="findKey"
         style="@style/CustomButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"

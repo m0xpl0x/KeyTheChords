@@ -1,33 +1,38 @@
 <resources>
     <string name="app_name">KeyTheChords</string>
 
-    <string-array name="Spinnerkeys">
+    <string name="noKeyfound">No Matching Key found</string>
 
-        <item> ---- </item>
-        <item> C </item>
-        <item> C# </item>
-        <item> D </item>
-        <item> D# </item>
-        <item> E </item>
-        <item> F </item>
-        <item> F# </item>
-        <item> G </item>
-        <item> G# </item>
-        <item> A </item>
-        <item> A# </item>
-        <item> B </item>
+    <string name="showKeyText">The Key is : </string>
 
-    </string-array>
+    <string name="tabTranspose">Tranpose</string>
+    <string name="tabKey">Key</string>
+    <string name="tabFill">Fill</string>
+
+    <string name="fillButton">Fill In Chords</string>
+    <string name="findKeyButton">Find Key</string>
+    <string name="transposeDownButton">-1</string>
+    <string name="transposeUpButton">+1</string>
 
 
-    <string-array name="modes">
 
-        <item>------------------</item>
-        <item>major</item>
-        <item>minor</item>
-        <item>diminished</item>
+    <string name="emptyKey">----</string>
+    <string name="emptyMode">------------------</string>
 
-    </string-array>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="general_header">General</string>
+    <string name="design_header">Design</string>
+
+    <!-- General Preferences -->
+      <string name="language_title">Language</string>
+
+    <!-- Design Preferences -->
+    <string name="darkmode_title">Darkmode</string>
+
+
+
 
 
 </resources>

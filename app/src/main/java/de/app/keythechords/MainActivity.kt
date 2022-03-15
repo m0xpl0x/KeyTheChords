@@ -1,5 +1,6 @@
 package de.app.keythechords
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,15 +12,13 @@ import de.app.keythechords.data.MusicWizard
 import de.app.keythechords.ui.Fragments.Adapters.ViewPagerAdapter
 import de.app.keythechords.ui.Fragments.FillFragment
 import de.app.keythechords.ui.Fragments.KeyFragment
+import de.app.keythechords.ui.Fragments.SettingsActivity
 import de.app.keythechords.ui.Fragments.TransposeFragment
 
 class MainActivity : AppCompatActivity(){
-    private lateinit var tranposeButton: Button;
-    var selectedKeys = Array<String>(7) {it -> "----"}
-    var selectedModes = Array<String>(7) {it -> "----"}
-    val mw = MusicWizard()
-    lateinit var  keyText : TextView
-    lateinit var key : String
+    var selectedKeys = Array(7) { "----"}
+    var selectedModes = Array(7) {"----"}
+    private val mw = MusicWizard()
     lateinit var spinnerKeyList : ArrayList<Spinner>
     lateinit var spinnerModeList  : ArrayList<Spinner>
 
@@ -39,9 +38,10 @@ class MainActivity : AppCompatActivity(){
         setUpSpinner()
 
         }
-
-
-
+    fun openSettingsActivity(view : View) {
+        val intent =  Intent(this,SettingsActivity::class.java)
+        startActivity(intent)
+    }
 
 
     fun transpose(view : View) {
@@ -71,18 +71,16 @@ class MainActivity : AppCompatActivity(){
 
     fun findKey(view : View) {
         val key = mw.findKeyOfChord(prepareChordData())
-        var keyText = findViewById<TextView>(R.id.tvShowKey);
+        val keyText = findViewById<TextView>(R.id.tvShowKey)
         if (key.first == "Nothing Found") {
-            keyText.setText("No Matching Key found");
+            keyText.setText(R.string.noKeyfound)
         }
         else
-            keyText.setText("The Key is : " + key.first + " " + key.second);
+            keyText.text = getString(R.string.showKeyText) + key.first + " " + key.second
     }
 
     fun fill(view : View) {
-        var newChords = ArrayList<Pair<String,String>>()
-        newChords = mw.fillInChords(prepareChordData())
-        Log.d("malte",newChords.toString())
+        val newChords = mw.fillInChords(prepareChordData())
         clearSelectedKeys()
         for (i in 0 until newChords.size) {
             selectedKeys[i] = newChords[i].first
@@ -94,7 +92,7 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun clearSelectedKeys() {
-        for(i in 0 until selectedKeys.size) {
+        for(i in selectedKeys.indices) {
             selectedKeys[i] = "----"
         }
     }
@@ -113,9 +111,9 @@ class MainActivity : AppCompatActivity(){
 
     private fun prepareChordData() : ArrayList<Pair<String,String>>{
 
-        var chords = ArrayList<Pair<String,String>>()
-        for (index in 0 until selectedKeys.size ){
-            if(selectedKeys[index] != "----" && selectedModes[index] != "------------------") {
+        val chords = ArrayList<Pair<String,String>>()
+        for (index in selectedKeys.indices){
+            if(selectedKeys[index] != getString(R.string.emptyKey) && selectedModes[index] != getString(R.string.emptyMode)) {
                 chords.add(Pair(selectedKeys[index], selectedModes[index]))
             }
         }
@@ -124,7 +122,7 @@ class MainActivity : AppCompatActivity(){
 
     private fun setUpSpinner() {
 
-        spinnerKeyList = ArrayList<Spinner>()
+        spinnerKeyList = ArrayList()
         spinnerKeyList.add(findViewById(R.id.spKey1))
         spinnerKeyList.add(findViewById(R.id.spKey2))
         spinnerKeyList.add(findViewById(R.id.spKey3))
@@ -136,7 +134,7 @@ class MainActivity : AppCompatActivity(){
         spinnerKeyList.forEach {spinner ->
             ArrayAdapter.createFromResource(
                 this,
-                R.array.Spinnerkeys,
+                R.array.keys,
                 android.R.layout.simple_spinner_item
             ).also { adapter ->
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -162,7 +160,7 @@ class MainActivity : AppCompatActivity(){
             }
         }
 
-        spinnerModeList = ArrayList<Spinner>()
+        spinnerModeList = ArrayList()
         spinnerModeList.add(findViewById(R.id.spMode1))
         spinnerModeList.add(findViewById(R.id.spMode2))
         spinnerModeList.add(findViewById(R.id.spMode3))
@@ -195,24 +193,16 @@ class MainActivity : AppCompatActivity(){
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
         }
-
-
-
-
-
-
     }
 
     private fun setUpTabs() {
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(TransposeFragment(),"Tranpose")
-        adapter.addFragment(KeyFragment(),"Key")
-        adapter.addFragment(FillFragment(),"Fill")
-        val viewPager : ViewPager
-        viewPager = findViewById(R.id.viewPager)
+        adapter.addFragment(TransposeFragment(),getString(R.string.tabTranspose))
+        adapter.addFragment(KeyFragment(),getString(R.string.tabKey))
+        adapter.addFragment(FillFragment(),getString(R.string.tabFill))
+        val viewPager : ViewPager = findViewById(R.id.viewPager)
         viewPager.adapter = adapter
-        val tabs : TabLayout
-        tabs = findViewById(R.id.tabLayout)
+        val tabs : TabLayout = findViewById(R.id.tabLayout)
         tabs.setupWithViewPager(viewPager)
 
         tabs.getTabAt(0)!!.setIcon(R.drawable.ic_transpose)
