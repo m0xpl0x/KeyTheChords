@@ -4,8 +4,8 @@ import android.util.Log
 
 class MusicWizard {
 
-    var musicalNotesList = listOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
-    var musicalChordModesList = listOf("major","minor","diminished")
+    var musicalNotes = listOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
+    var musicalChordModes = listOf("major","minor","diminished")
 
 //var musicalKeyModesList = listOf("major","minor")
 
@@ -24,7 +24,7 @@ class MusicWizard {
     private var asMajorKeyList = ArrayList<Pair<String,String>>()
     private var bMajorKeyList = ArrayList<Pair<String,String>>()
 
-    private var majorKeyList = arrayOf(cMajorKeyList,csMajorKeyList,dMajorKeyList,dsMajorKeyList,
+    private var majorKeys = arrayOf(cMajorKeyList,csMajorKeyList,dMajorKeyList,dsMajorKeyList,
         eMajorKeyList,fMajorKeyList,fsMajorKeyList,gMajorKeyList,
         gsMajorKeyList,aMajorKeyList,asMajorKeyList,bMajorKeyList)
 
@@ -43,7 +43,7 @@ class MusicWizard {
     private var asMinorKeyList = ArrayList<Pair<String,String>>()
     private var bMinorKeyList = ArrayList<Pair<String,String>>()
 
-    private var minorKeyList = arrayOf(cMinorKeyList,csMinorKeyList,dMinorKeyList,dsMinorKeyList,
+    private var minorKeys = arrayOf(cMinorKeyList,csMinorKeyList,dMinorKeyList,dsMinorKeyList,
         eMinorKeyList,fMinorKeyList,fsMinorKeyList,gMinorKeyList,
         gsMinorKeyList,aMinorKeyList,asMinorKeyList,bMinorKeyList)
 
@@ -52,28 +52,28 @@ class MusicWizard {
 
     init {
 
-        for (i in majorKeyList.indices) {//war mal bei beidem ...size -1
+        for (i in majorKeys.indices) {//war mal bei beidem ...size -1
 
-            majorKeyList[i].add(Pair(musicalNotesList[i%12],musicalChordModesList[0])) //I Major
-            majorKeyList[i].add(Pair(musicalNotesList[(i+2)%12],musicalChordModesList[1])) // II Minor
-            majorKeyList[i].add(Pair(musicalNotesList[(i+4)%12],musicalChordModesList[1])) // III Minor
-            majorKeyList[i].add(Pair(musicalNotesList[(i+5)%12],musicalChordModesList[0])) // VI Major
-            majorKeyList[i].add(Pair(musicalNotesList[(i+7)%12],musicalChordModesList[0])) // V Major
-            majorKeyList[i].add(Pair(musicalNotesList[(i+9)%12],musicalChordModesList[1])) // VI Minor
-            majorKeyList[i].add(Pair(musicalNotesList[(i+11)%12],musicalChordModesList[2])) // VII Diminished
+            majorKeys[i].add(Pair(musicalNotes[i%12],musicalChordModes[0])) //I Major
+            majorKeys[i].add(Pair(musicalNotes[(i+2)%12],musicalChordModes[1])) // II Minor
+            majorKeys[i].add(Pair(musicalNotes[(i+4)%12],musicalChordModes[1])) // III Minor
+            majorKeys[i].add(Pair(musicalNotes[(i+5)%12],musicalChordModes[0])) // VI Major
+            majorKeys[i].add(Pair(musicalNotes[(i+7)%12],musicalChordModes[0])) // V Major
+            majorKeys[i].add(Pair(musicalNotes[(i+9)%12],musicalChordModes[1])) // VI Minor
+            majorKeys[i].add(Pair(musicalNotes[(i+11)%12],musicalChordModes[2])) // VII Diminished
         }
 
 
 
-        for (i in minorKeyList.indices) {
+        for (i in minorKeys.indices) {
 
-            minorKeyList[i].add(Pair(musicalNotesList[i%12],musicalChordModesList[1])) //I Minor
-            minorKeyList[i].add(Pair(musicalNotesList[(i+2)%12],musicalChordModesList[2])) // II Diminished
-            minorKeyList[i].add(Pair(musicalNotesList[(i+3)%12],musicalChordModesList[0])) // bIII major
-            minorKeyList[i].add(Pair(musicalNotesList[(i+5)%12],musicalChordModesList[1])) // VI Minor
-            minorKeyList[i].add(Pair(musicalNotesList[(i+7)%12],musicalChordModesList[1])) // V Minor
-            minorKeyList[i].add(Pair(musicalNotesList[(i+8)%12],musicalChordModesList[0])) // bVI Major
-            minorKeyList[i].add(Pair(musicalNotesList[(i+10)%12],musicalChordModesList[0])) // bVII major
+            minorKeys[i].add(Pair(musicalNotes[i%12],musicalChordModes[1])) //I Minor
+            minorKeys[i].add(Pair(musicalNotes[(i+2)%12],musicalChordModes[2])) // II Diminished
+            minorKeys[i].add(Pair(musicalNotes[(i+3)%12],musicalChordModes[0])) // bIII major
+            minorKeys[i].add(Pair(musicalNotes[(i+5)%12],musicalChordModes[1])) // VI Minor
+            minorKeys[i].add(Pair(musicalNotes[(i+7)%12],musicalChordModes[1])) // V Minor
+            minorKeys[i].add(Pair(musicalNotes[(i+8)%12],musicalChordModes[0])) // bVI Major
+            minorKeys[i].add(Pair(musicalNotes[(i+10)%12],musicalChordModes[0])) // bVII major
         }
     }
 
@@ -89,7 +89,7 @@ class MusicWizard {
 
 
             if (keyString.contains("major")) {
-                majorKeyList.forEach { majorKey ->
+                majorKeys.forEach { majorKey ->
                     val currentKey = majorKey[0]
                     if (currentKey.first == keyLetter)
                     {
@@ -103,7 +103,7 @@ class MusicWizard {
             }
 
             if (keyString.contains("minor")) {
-                minorKeyList.forEach { minorKey ->
+                minorKeys.forEach { minorKey ->
                     val currentKey = minorKey[0]
                     if (currentKey.first == keyLetter)
                     {
@@ -127,11 +127,11 @@ class MusicWizard {
         chords.forEach { chord ->
             val oldkey = chord.first
             val oldMode = chord.second
-            var position = musicalNotesList.indexOf(oldkey)
+            var position = musicalNotes.indexOf(oldkey)
             while (position + step < 0) {
                 position += 12
             }
-            val newKey = musicalNotesList[(position + step)%12]
+            val newKey = musicalNotes[(position + step)%12]
             transposedChords.add(Pair(newKey,oldMode))
 
         }
@@ -142,33 +142,33 @@ class MusicWizard {
     fun findKeyOfChord(chords : ArrayList<Pair<String,String>>): Pair<String,String> {
 
         chords.forEach {c ->
-            for (j in majorKeyList.indices) {
+            for (j in majorKeys.indices) {
 
                 //check in major chords
 
-                if (lookForChordInKey(majorKeyList[j],c)) {
+                if (lookForChordInKey(majorKeys[j],c)) {
                     var flag = 0
                     for (i in 0 until chords.size) {
-                        if(!lookForChordInKey(majorKeyList[j], chords[i])) {
+                        if(!lookForChordInKey(majorKeys[j], chords[i])) {
                             flag = 1
                         }
                     }
                     if (flag == 0) {
-                        return majorKeyList[j][0]
+                        return majorKeys[j][0]
                     }
                 }
 
                 //check in minor chords
 
-                if (lookForChordInKey(minorKeyList[j],c)) {
+                if (lookForChordInKey(minorKeys[j],c)) {
                     var flag = 0
                     for (i in 0 until chords.size) {
-                        if(!lookForChordInKey(minorKeyList[j], chords[i])) {
+                        if(!lookForChordInKey(minorKeys[j], chords[i])) {
                             flag = 1
                         }
                     }
                     if (flag == 0) {
-                        return minorKeyList[j][0]
+                        return minorKeys[j][0]
                     }
                 }
             }
