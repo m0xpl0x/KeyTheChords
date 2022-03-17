@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 
 class MusicDataViewModel(private val musicDataRepository: MusicDataRepository) : ViewModel() {
 
-    private var musicalNotes = List<String>(12) {""}
-    private var musicalChordModes = List<String>(3) {""}
+    private var musicalNotes = List(12) {""}
+    private var musicalChordModes = List(3) {""}
     private lateinit var majorKeys : Array<ArrayList<Pair<String,String>>>
     private lateinit var minorKeys : Array<ArrayList<Pair<String,String>>>
 

@@ -1,36 +1,29 @@
 package de.app.keythechords.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-
 class MusicDataDao {
-    /*private val musicalNotesList = mutableListOf<String>()
-    private val musicalChordModesList = mutableListOf<String>()
-    private val majorKeysList = mutableListOf<Pair<String,String>>()
-    private val minorKeysList = mutableListOf<Pair<String,String>>()*/
 
-    private var musicalNotes = List<String>(12) {""}
-    private var musicalChordModes = List<String>(3) {""}
-    private lateinit var majorKeys : Array<ArrayList<Pair<String,String>>>
-    private lateinit var minorKeys : Array<ArrayList<Pair<String,String>>>
+    private var musicalNotes = List(12) {""}
+    private var musicalChordModes = List(3) {""}
+    private var majorKeys : Array<ArrayList<Pair<String,String>>>
+    private var minorKeys : Array<ArrayList<Pair<String,String>>>
 
 
     init {
         musicalNotes = listOf("C","C#","D","D#","E","F","F#","G","G#","A","A#","B")
         musicalChordModes  = listOf("major","minor","diminished")
 
-        var cMajorKeyList = ArrayList<Pair<String,String>>()
-        var csMajorKeyList = ArrayList<Pair<String,String>>()
-        var dMajorKeyList = ArrayList<Pair<String,String>>()
-        var dsMajorKeyList = ArrayList<Pair<String,String>>()
-        var eMajorKeyList = ArrayList<Pair<String,String>>()
-        var fMajorKeyList = ArrayList<Pair<String,String>>()
-        var fsMajorKeyList = ArrayList<Pair<String,String>>()
-        var gMajorKeyList = ArrayList<Pair<String,String>>()
-        var gsMajorKeyList = ArrayList<Pair<String,String>>()
-        var aMajorKeyList = ArrayList<Pair<String,String>>()
-        var asMajorKeyList = ArrayList<Pair<String,String>>()
-        var bMajorKeyList = ArrayList<Pair<String,String>>()
+        val cMajorKeyList = ArrayList<Pair<String,String>>()
+        val csMajorKeyList = ArrayList<Pair<String,String>>()
+        val dMajorKeyList = ArrayList<Pair<String,String>>()
+        val dsMajorKeyList = ArrayList<Pair<String,String>>()
+        val eMajorKeyList = ArrayList<Pair<String,String>>()
+        val fMajorKeyList = ArrayList<Pair<String,String>>()
+        val fsMajorKeyList = ArrayList<Pair<String,String>>()
+        val gMajorKeyList = ArrayList<Pair<String,String>>()
+        val gsMajorKeyList = ArrayList<Pair<String,String>>()
+        val aMajorKeyList = ArrayList<Pair<String,String>>()
+        val asMajorKeyList = ArrayList<Pair<String,String>>()
+        val bMajorKeyList = ArrayList<Pair<String,String>>()
 
         majorKeys = arrayOf(cMajorKeyList,csMajorKeyList,dMajorKeyList,dsMajorKeyList,
             eMajorKeyList,fMajorKeyList,fsMajorKeyList,gMajorKeyList,
@@ -49,18 +42,18 @@ class MusicDataDao {
 
 
 
-        var cMinorKeyList = ArrayList<Pair<String,String>>()
-        var csMinorKeyList = ArrayList<Pair<String,String>>()
-        var dMinorKeyList = ArrayList<Pair<String,String>>()
-        var dsMinorKeyList = ArrayList<Pair<String,String>>()
-        var eMinorKeyList = ArrayList<Pair<String,String>>()
-        var fMinorKeyList = ArrayList<Pair<String,String>>()
-        var fsMinorKeyList = ArrayList<Pair<String,String>>()
-        var gMinorKeyList = ArrayList<Pair<String,String>>()
-        var gsMinorKeyList = ArrayList<Pair<String,String>>()
-        var aMinorKeyList = ArrayList<Pair<String,String>>()
-        var asMinorKeyList = ArrayList<Pair<String,String>>()
-        var bMinorKeyList = ArrayList<Pair<String,String>>()
+        val cMinorKeyList = ArrayList<Pair<String,String>>()
+        val csMinorKeyList = ArrayList<Pair<String,String>>()
+        val dMinorKeyList = ArrayList<Pair<String,String>>()
+        val dsMinorKeyList = ArrayList<Pair<String,String>>()
+        val eMinorKeyList = ArrayList<Pair<String,String>>()
+        val fMinorKeyList = ArrayList<Pair<String,String>>()
+        val fsMinorKeyList = ArrayList<Pair<String,String>>()
+        val gMinorKeyList = ArrayList<Pair<String,String>>()
+        val gsMinorKeyList = ArrayList<Pair<String,String>>()
+        val aMinorKeyList = ArrayList<Pair<String,String>>()
+        val asMinorKeyList = ArrayList<Pair<String,String>>()
+        val bMinorKeyList = ArrayList<Pair<String,String>>()
 
          minorKeys = arrayOf(cMinorKeyList,csMinorKeyList,dMinorKeyList,dsMinorKeyList,
             eMinorKeyList,fMinorKeyList,fsMinorKeyList,gMinorKeyList,

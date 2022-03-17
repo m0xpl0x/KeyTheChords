@@ -17,7 +17,7 @@
 
         <SwitchPreferenceCompat
             android:id="@+id/darkModeSwitch"
-            app:key="sync"
+            app:key="darkModeSwitch"
             app:title="@string/darkmode_title" />
 
     </PreferenceCategory>

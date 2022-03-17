@@ -1,4 +1,4 @@
-package de.app.keythechords
+package de.app.keythechords.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,19 +8,17 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import de.app.keythechords.R
 import de.app.keythechords.data.MusicDataViewModel
-import de.app.keythechords.data.MusicWizard
 import de.app.keythechords.ui.Fragments.Adapters.ViewPagerAdapter
 import de.app.keythechords.ui.Fragments.FillFragment
 import de.app.keythechords.ui.Fragments.KeyFragment
-import de.app.keythechords.ui.Fragments.SettingsActivity
 import de.app.keythechords.ui.Fragments.TransposeFragment
 import de.app.keythechords.utilities.InjectorUtils
 
 class MainActivity : AppCompatActivity() {
     var selectedKeys = Array(7) { "----" }
     var selectedModes = Array(7) { "----" }
-    private val mw = MusicWizard()
     lateinit var spinnerKeyList: ArrayList<Spinner>
     lateinit var spinnerModeList: ArrayList<Spinner>
     lateinit var viewModel : MusicDataViewModel
