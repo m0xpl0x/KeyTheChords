@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">KeyTheChords</string>
+    <string name="title_activity_settings2">SettingsActivity2</string>
+    <string name="title_activity_settings">Settings</string>
 
     <string name="noKeyfound">No Matching Key found</string>
-
     <string name="showKeyText">The Key is : </string>
 
     <string name="tabTranspose">Tranpose</string>
@@ -14,34 +15,9 @@
     <string name="transposeDownButton">-1</string>
     <string name="transposeUpButton">+1</string>
 
-
-
     <string name="emptyKey">----</string>
     <string name="emptyMode">------------------</string>
 
-    <string name="title_activity_settings">SettingsActivity</string>
-
-    <!-- Preference Titles -->
-    <string name="general_header">General</string>
-    <string name="design_header">Design</string>
-
-    <!-- General Preferences -->
-      <string name="language_title">Language</string>
-
-    <!-- Design Preferences -->
     <string name="darkmode_title">Darkmode</string>
-    <string name="title_activity_settings2">SettingsActivity2</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
-
-
-
 
 </resources>

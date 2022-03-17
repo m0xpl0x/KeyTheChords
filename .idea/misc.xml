@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/KeyTheChords/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.272" />
+        <entry key="..\:/AndroidStudioProjects/KeyTheChords/app/src/main/res/drawable/ic_baseline_settings_24_2.xml" value="0.196" />
         <entry key="..\:/AndroidStudioProjects/KeyTheChords/app/src/main/res/layout/activity_main.xml" value="0.67" />
+        <entry key="..\:/AndroidStudioProjects/KeyTheChords/app/src/main/res/layout/activity_settings.xml" value="0.18802083333333333" />
         <entry key="..\:/AndroidStudioProjects/KeyTheChords/app/src/main/res/layout/activity_settings2.xml" value="0.2821557971014493" />
         <entry key="..\:/AndroidStudioProjects/KeyTheChords/app/src/main/res/layout/fragment_chords.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidStudioProjects/KeyTheChords/app/src/main/res/layout/fragment_fill.xml" value="0.24909420289855072" />

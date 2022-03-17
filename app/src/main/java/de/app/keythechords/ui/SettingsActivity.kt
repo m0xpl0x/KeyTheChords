@@ -13,8 +13,8 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val switch : Switch = findViewById<Switch>(R.id.switchDarkMode)
-        switch.setOnCheckedChangeListener { buttonView, isChecked ->
+        val switch : Switch = findViewById(R.id.switchDarkMode)
+        switch.setOnCheckedChangeListener { _, isChecked ->
             setDarkMode(isChecked)
         }
     }

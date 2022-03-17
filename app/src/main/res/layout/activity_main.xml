@@ -203,17 +203,17 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tranpose" />
+            android:text="@string/tabTranspose" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Key" />
+            android:text="@string/tabKey" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fill In" />
+            android:text="@string/tabFill" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -223,81 +223,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="479dp" />
-
-    <!--
-        <fragment
-            android:id="@+id/chordsListFragment"
-            android:name="de.app.keythechords.ui.Fragments.ChordsFragment"
-            android:layout_width="377dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvChords"
-            android:layout_width="377dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
-
-        <fragment
-            android:id="@+id/tranposeFragment"
-            android:name="de.app.keythechords.ui.Fragments.TransposeFragment"
-            android:layout_width="375dp"
-            android:layout_height="107dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvShowKey"
-            tools:visibility="gone" />
-
-        <fragment
-            android:id="@+id/KeyFragment"
-            android:name="de.app.keythechords.ui.Fragments.KeyFragment"
-            android:layout_width="375dp"
-            android:layout_height="107dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvShowKey"
-            tools:visibility="gone" />
-
-        <fragment
-            android:id="@+id/FillFragment"
-            android:name="de.app.keythechords.ui.Fragments.FillFragment"
-            android:layout_width="375dp"
-            android:layout_height="107dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvShowKey"
-            tools:visibility="gone" />-->
 
 
     <androidx.viewpager.widget.ViewPager
@@ -310,7 +235,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         app:layout_constraintVertical_bias="0.613">
-        <!--        layout above vlt weg-->
+
 
 
     </androidx.viewpager.widget.ViewPager>
@@ -321,12 +246,10 @@
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="180dp"
-        android:autoText="false"
         android:background="#2B0062A2"
-        android:editable="false"
         android:includeFontPadding="false"
         android:padding="7dp"
-        android:text="The Key is : "
+        android:text="@string/showKeyText"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -349,17 +272,5 @@
         app:layout_constraintStart_toEndOf="@+id/tvShowKey"
         app:layout_constraintTop_toBottomOf="@+id/spMode7" />
 
-
-    <!--    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvChords"
-            android:layout_width="match_parent"
-            android:layout_height="404dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

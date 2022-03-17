@@ -1,4 +1,6 @@
-package de.app.keythechords.ui.Fragments.Adapters
+@file:Suppress("DEPRECATION")
+
+package de.app.keythechords.ui.fragments.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -20,7 +22,7 @@ class ViewPagerAdapter(supportFragmentManager: FragmentManager) : FragmentPagerA
         return mFragmentList[position]
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return mFragmentTitleList[position]
     }
 

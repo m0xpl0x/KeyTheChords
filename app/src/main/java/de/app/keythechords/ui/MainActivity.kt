@@ -1,5 +1,6 @@
 package de.app.keythechords.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,10 +11,10 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import de.app.keythechords.R
 import de.app.keythechords.data.MusicDataViewModel
-import de.app.keythechords.ui.Fragments.Adapters.ViewPagerAdapter
-import de.app.keythechords.ui.Fragments.FillFragment
-import de.app.keythechords.ui.Fragments.KeyFragment
-import de.app.keythechords.ui.Fragments.TransposeFragment
+import de.app.keythechords.ui.fragments.adapters.ViewPagerAdapter
+import de.app.keythechords.ui.fragments.FillFragment
+import de.app.keythechords.ui.fragments.KeyFragment
+import de.app.keythechords.ui.fragments.TransposeFragment
 import de.app.keythechords.utilities.InjectorUtils
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     var selectedModes = Array(7) { "----" }
     lateinit var spinnerKeyList: ArrayList<Spinner>
     lateinit var spinnerModeList: ArrayList<Spinner>
-    lateinit var viewModel : MusicDataViewModel
+    private lateinit var viewModel : MusicDataViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     fun findKey(view: View) {
         val key = viewModel.findKeyOfChord(prepareChordData())
         val keyText = findViewById<TextView>(R.id.tvShowKey)
