@@ -18,12 +18,9 @@ class MusicDataViewModel(private val musicDataRepository: MusicDataRepository) :
     }
 
     fun findKeyOfChord(chords : ArrayList<Pair<String,String>>): Pair<String,String> {
-
         chords.forEach {c ->
             for (j in majorKeys.indices) {
-
                 //check in major chords
-
                 if (lookForChordInKey(majorKeys[j],c)) {
                     var flag = 0
                     for (i in 0 until chords.size) {
@@ -35,9 +32,7 @@ class MusicDataViewModel(private val musicDataRepository: MusicDataRepository) :
                         return majorKeys[j][0]
                     }
                 }
-
                 //check in minor chords
-
                 if (lookForChordInKey(minorKeys[j],c)) {
                     var flag = 0
                     for (i in 0 until chords.size) {
@@ -51,7 +46,6 @@ class MusicDataViewModel(private val musicDataRepository: MusicDataRepository) :
                 }
             }
         }
-
         return Pair("Nothing Found","")
     }
 
@@ -77,13 +71,7 @@ class MusicDataViewModel(private val musicDataRepository: MusicDataRepository) :
         Log.d("malte","chords.size : " + chords.size)
         if (chords.size < 7) {
             val keyString = findKeyOfChord(chords).toString()
-
-
-
             val keyLetter = keyString[1].toString()
-
-
-
             if (keyString.contains("major")) {
                 majorKeys.forEach { majorKey ->
                     val currentKey = majorKey[0]
@@ -97,7 +85,6 @@ class MusicDataViewModel(private val musicDataRepository: MusicDataRepository) :
                     }
                 }
             }
-
             if (keyString.contains("minor")) {
                 minorKeys.forEach { minorKey ->
                     val currentKey = minorKey[0]

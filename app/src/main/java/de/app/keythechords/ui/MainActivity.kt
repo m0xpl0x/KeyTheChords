@@ -57,17 +57,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
         clearSelectedKeys()
-
         for (i in 0 until newChords.size) {
             selectedKeys[i] = newChords[i].first
 
         }
         setChordData(selectedKeys, selectedModes)
-
         findKey(view)
-
     }
-
     @SuppressLint("SetTextI18n")
     fun findKey(view: View) {
         val key = viewModel.findKeyOfChord(prepareChordData())
@@ -77,7 +73,6 @@ class MainActivity : AppCompatActivity() {
         } else
             keyText.text = getString(R.string.showKeyText) + key.first + " " + key.second
     }
-
     fun fill(view: View) {
         val newChords = viewModel.fillInChords(prepareChordData())
         clearSelectedKeys()
@@ -153,9 +148,7 @@ class MainActivity : AppCompatActivity() {
                         adapterview?.getItemAtPosition(position) as String
                 }
 
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                }
+                override fun onNothingSelected(parent: AdapterView<*>?) { }
             }
         }
 
