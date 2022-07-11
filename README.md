@@ -23,6 +23,9 @@ Ein einfaches Tool, welches verschiedene Services bündelt:
 - Akkordfolgen können automatisch um fehlende Akkorde der Tonart ergänzt werden
 - Transponieren der Tonart
 
+![App](https://github.com/m0xpl0x/KeyTheChords/blob/master/bilder/KeyTheChords.jpg?raw=true)
+![Code architecture](https://github.com/m0xpl0x/KeyTheChords/blob/master/bilder/Architektur.jpg?raw=true)
+
 
 
 
