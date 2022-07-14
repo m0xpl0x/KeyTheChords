@@ -1,4 +1,4 @@
-# KeyTheChords
+# KeyTheChords (German)
 
 # Musikalisches Komponieren
 
